@@ -1,17 +1,43 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only[:edit, :update, :destroy
+  before_action :set_topic, only: [:edit, :update, :destroy]
 
   def index
     @topics = Topic.all
   end
 
   def new
-    @topic = Topic.new
+    if params[:back]
+      @topic = Topic.new(topics_params)
+    else
+      @topic = Topic.new
+    end
   end
 
   def create
-    Topic.create(topics_params)
+    @topic = Topic.new(topics_params)
+    if @topic.save
+      redirect_to topics_path, notice: "作成しました"
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @topic.update(topics_params)
     redirect_to topics_path
+  end
+
+  def destroy
+    @topic.destroy
+    redirect_to topics_path
+  end
+
+  def confirm
+    @topic = Topic.new(topics_params)
+    render :new if @topic.invalid?
   end
 
   private
