@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root 'top#index'
 
   resources :topics, only: [:index, :new, :create, :edit, :update, :destroy] do
@@ -7,7 +8,10 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-
+  
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
