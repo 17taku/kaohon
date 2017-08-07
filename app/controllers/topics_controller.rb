@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -29,17 +29,22 @@ class TopicsController < ApplicationController
 
   def update
     @topic.update(topics_params)
-    redirect_to topics_path
+    redirect_to topics_path, notice: "編集しました"
   end
 
   def destroy
     @topic.destroy
-    redirect_to topics_path
+    redirect_to topics_path, notice: "削除しました"
   end
 
   def confirm
     @topic = Topic.new(topics_params)
     render :new if @topic.invalid?
+  end
+
+  def show
+    @comment = @topic.comments.build
+    @comments = @topic.comments
   end
 
   private
