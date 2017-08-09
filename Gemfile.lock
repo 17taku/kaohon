@@ -272,6 +272,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
+    libv8 (3.16.14.19)
     libv8 (3.16.14.19-x86_64-darwin-16)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -342,6 +343,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
+    rails-env (1.0.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_12factor (0.0.3)
@@ -454,6 +456,7 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 4.2.3)
+  rails-env
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

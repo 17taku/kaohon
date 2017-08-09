@@ -67,3 +67,4 @@ gem 'mini_magick'
 gem 'fog'
 gem 'unicorn'
 gem 'therubyracer', platforms: :ruby
+gem 'rails-env'

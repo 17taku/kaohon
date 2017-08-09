@@ -1,6 +1,6 @@
 header {
   width: 100%;
-  background-color: #2c3e50;
+  background-color: #6495ed;
   height: 54px;
 }
 
@@ -21,6 +21,14 @@ header li {
   width: auto;
 }
 
+header p.before_log_in {
+  text-align: center;
+  display: inline-block;
+  padding: 15px;
+  text-decoration: none;
+  color: white;
+}
+
 header ul:after {
   content: "";
   display: block;
@@ -31,7 +39,6 @@ header ul:after {
   padding-bottom: 15%;
   width: 100%;
   background-size: cover;
-  background-image: url("images-master/header.jpg");
   background-attachment: fixed;
 }
 
