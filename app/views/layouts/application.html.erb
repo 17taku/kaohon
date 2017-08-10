@@ -16,7 +16,7 @@
             <li class="log_in_logo"><%= link_to "Kaohon", topics_path %></li>
           </div>
           <div class="col">
-            <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
+            <li><%= link_to 'ともだち', user_path(current_user.id) %></li>
             <li><%= link_to "メッセージ", conversations_path %></li>
             <li><%= link_to '設定', edit_user_registration_path %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>

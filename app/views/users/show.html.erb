@@ -3,7 +3,7 @@
     <div class="row users">
       <p><%= @user.name %>さんのフォロワー一覧</p>
       <% if @user.followers.count == 0 %>
-        <p>フォローはいません</p>
+        <p>フォロワーはいません</p>
       <% end %>
       <% @user.followers.each do |user| %>
         <% unless user == current_user %>
@@ -16,10 +16,10 @@
     <div class="row users">
       <p><%= @user.name %>さんのフォローしている人一覧</p>
       <% if @user.followed_users.count == 0 %>
-        <p>フォローはいません</p>
+        <p>フォローしている人はいません</p>
       <% end %>
       <% @user.followed_users.each do |user| %>
-        <% if user == current_user %>
+        <% unless user == current_user %>
           <%= profile_img(user) %>
           <p><%= link_to user.name, user %>さん</p>
           <%= render 'follow_form', user: user %>
@@ -29,9 +29,9 @@
 
     </div>
     <div class="row users">
-      <p>全てのユーザー</p>
+      <p>その他のユーザー</p>
       <% @users.each do |user| %>
-        <% unless user == current_user %>
+        <% unless user == current_user || @user.followers.ids.include?(user.id) || @user.followed_users.ids.include?(user.id) %>
           <%= profile_img(user) %>
           <p><%= link_to user.name, user %>さん</p>
           <%= render 'follow_form', user: user %>
