@@ -1,24 +1,43 @@
-<div class="row topic">
-  <p><%= @user.name %>さんのフォロワー一覧</p>
-  <% @user.followers.each do |user| %>
-    <% unless user == current_user %>
-      <div class="container-child col-md-2 col-sm-4 col-xs-6">
-        <%= profile_img(user) %>
-        <p><%= link_to user.name, user %>さん</p>
-        <%= render 'follow_form', user: user %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-<div class="row topic">
-  <p><%= @user.name %>さんのフォローしている人一覧</p>
-  <% @user.followed_users.each do |user| %>
-    <% unless user == current_user %>
-      <div class="container-child col-md-2 col-sm-4 col-xs-6">
-        <%= profile_img(user) %>
-        <p><%= link_to user.name, user %>さん</p>
-        <%= render 'follow_form', user: user %>
-      </div>
-    <% end %>
-  <% end %>
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+    <div class="row users">
+      <p><%= @user.name %>さんのフォロワー一覧</p>
+      <% if @user.followers.count == 0 %>
+        <p>フォローはいません</p>
+      <% end %>
+      <% @user.followers.each do |user| %>
+        <% unless user == current_user %>
+          <%= profile_img(user) %>
+          <p><%= link_to user.name, user %>さん</p>
+          <%= render 'follow_form', user: user %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="row users">
+      <p><%= @user.name %>さんのフォローしている人一覧</p>
+      <% if @user.followed_users.count == 0 %>
+        <p>フォローはいません</p>
+      <% end %>
+      <% @user.followed_users.each do |user| %>
+        <% if user == current_user %>
+          <%= profile_img(user) %>
+          <p><%= link_to user.name, user %>さん</p>
+          <%= render 'follow_form', user: user %>
+          <p><%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></p>
+        <% end %>
+      <% end %>
+
+    </div>
+    <div class="row users">
+      <p>全てのユーザー</p>
+      <% @users.each do |user| %>
+        <% unless user == current_user %>
+          <%= profile_img(user) %>
+          <p><%= link_to user.name, user %>さん</p>
+          <%= render 'follow_form', user: user %>
+          <p><%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
