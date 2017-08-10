@@ -1,21 +1,25 @@
-100.times do |n|
+10.times do |n|
+  name = Faker::Pokemon.name
   email = Faker::Internet.email
-  password = "password"
-  name = Faker::StarWars.character
-  User.create!(email: email,
+  password = Faker::Internet.password
+  uid = SecureRandom.uuid
+  User.create( name: name,
+               email: email,
                password: password,
-               password_confirmation: password,
-               name: name
+               uid: uid
                )
 end
-n = 1
-while n <= 100
-  title = Faker::Pokemon.name
-  content = Faker::Lorem.paragraph
-  Topic.create(
-    title: title,
-    content: content,
-    user_id: n
-  )
-  n = n + 1
+
+10.times do |n|
+  topic = Topic.new(
+    content: 'トピック',
+  user_id: n + 1)
+
+  10.times do
+    topic.comments.build(
+      content: 'コメント',
+    user_id: i + 1)
+  end
+
+  topic.save
 end
