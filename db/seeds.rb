@@ -10,15 +10,17 @@
                )
 end
 
-10.times do |n|
+n = 1
+while n <= 10
   topic = Topic.new(
     content: 'トピック',
   user_id: n + 1)
 
-  10.times do
+  i = 1
+  while i <= 10
     topic.comments.build(
       content: 'コメント',
-    user_id: n + 1)
+    user_id: i + 1)
   end
 
   topic.save
