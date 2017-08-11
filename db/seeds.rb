@@ -18,7 +18,7 @@ end
   10.times do
     topic.comments.build(
       content: 'コメント',
-    user_id: i + 1)
+    user_id: n + 1)
   end
 
   topic.save
