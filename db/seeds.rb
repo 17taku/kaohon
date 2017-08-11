@@ -12,7 +12,7 @@ end
 
 10.times do |n|
   topic = Topic.new(
-    title: 'タイトル'
+    title: 'タイトル',
     content: 'トピック',
   user_id: n + 1)
 
