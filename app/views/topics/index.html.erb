@@ -21,6 +21,7 @@
         </div>
         <div class="content">
           <%= link_to topic_path(topic) do %>
+            「<%= topic.title %>」
           <% end %>
           <p><%= topic.content %></p>
 
